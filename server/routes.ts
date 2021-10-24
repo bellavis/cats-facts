@@ -1,25 +1,19 @@
 import * as express from 'express';
-const mongoose = require('mongoose');
 const app = express.Router();
-const axios = require('axios')
+const mongoose = require('mongoose');
+const axios = require('axios');
+const Fact = require('./models/my-facts');
 const URL = 'https://catfact.ninja/facts?limit=10';
-const randomCatURL = 'https://api.thecatapi.com/v1/images/search?format=json';
 
 export { app as routes };
 
-//mongoDB connection and settings
-
-mongoose.connect('mongodb://localhost:27017/cat-facts');
+mongoose.connect('mongodb://localhost:27017/cats-facts');
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
     console.log("Database connected");
 });
-
-
-
-app.get('/', (req, res) => res.send('hello cats'));
 
 app.get('/all-facts', async (req, res) => {
     await axios.get(URL)
@@ -30,18 +24,42 @@ app.get('/all-facts', async (req, res) => {
                     img: randomImage() + '.jpg'
                 }
             });
-            console.log(factsArray)
             res.send(factsArray)
         })
         .catch(e => console.log(e));
 });
 
 
-app.post('post-fact', (req, res) => {
-    res.send({
-        body: req.body
-    });
+app.post('/save-fact', async (req, res) => {
+    try {
+        const fact = new Fact(req.body.fact);
+        await fact.save();
+        res.send(fact);
+        res.sendStatus(200);
+    } catch (e) {
+        res.sendStatus(500);
+    }
 });
+
+app.get('/my-facts', async (req, res) => {
+    try {
+        const myFacts = await Fact.find({});
+        res.send(myFacts);
+    } catch (e) {
+        console.log(`Error: ${e}`)
+    }
+
+});
+
+app.get('/delete-fact/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        await Fact.findByIdAndDelete(id);
+        res.sendStatus(200);
+    } catch (e) {
+        res.sendStatus(500);
+    }
+})
 
 
 function randomImage() {
