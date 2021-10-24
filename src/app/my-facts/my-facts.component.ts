@@ -7,7 +7,7 @@ import { ServerApiService } from '../server-api.service';
   styleUrls: ['./my-facts.component.css']
 })
 export class MyFactsComponent implements OnInit {
-  facts = this.sas.facts;
+  myFacts = this.sas.myFacts;
   constructor(public sas: ServerApiService) { }
 
   ngOnInit(): void {
@@ -25,8 +25,9 @@ export class MyFactsComponent implements OnInit {
 
   }
 
-  removeFromMyFacts(i: number) {
-
+  deleteFact(id: string) {
+    console.log(id);
+    this.sas.deleteFact(id);
   }
 
 }

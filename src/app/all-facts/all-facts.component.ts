@@ -10,20 +10,20 @@ export class AllFactsComponent implements OnInit {
   title = 'cats-facts';
   facts = this.sas.facts;
 
-
   constructor(public sas: ServerApiService) {
   }
 
   ngOnInit(): void {
-
   }
 
-
-  saveFact(fact: string) {
-    // localStorage.setItem('fact', fact);
-    console.log(localStorage);
+  saveFact(fact: object, index: number) {
+    try {
+      this.sas.saveFact(fact);
+      const fillHeart = document.getElementById('heart' + index);
+      fillHeart?.classList.remove('bi-suit-heart');
+      fillHeart?.classList.add('bi-suit-heart-fill');
+    } catch (e) {
+      console.log(`Error: ${e}`)
+    }
   }
-
-
-
 }

@@ -10,7 +10,7 @@ export class ServerApiService {
   apiURL: string = 'http://localhost:4201';
 
   facts: any = this.getFacts();
-  // randomImg: any = this.getRandomCatImage();
+  myFacts: any = this.getMyFacts();
 
   constructor(private http: HttpClient) { }
 
@@ -18,8 +18,16 @@ export class ServerApiService {
     return this.getData('all-facts');
   }
 
-  postFact(fact: object) {
-    this.postData('post-fact', fact);
+  getMyFacts() {
+    return this.getData('my-facts');
+  }
+
+  saveFact(fact: object) {
+    this.postData('save-fact', fact);
+  }
+
+  deleteFact(id: string) {
+    this.http.get(this.apiURL + '/delete-fact/' + id);
   }
 
   getData(route: string) {
