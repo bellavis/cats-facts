@@ -7,7 +7,7 @@ Project by Bell Avisar.
 Navigate to the project folder and run `npm install`. Make sure you have `mongo` installed on your machine or simply do `sudo npm install -g mongo` and create a local database and a collection called `catsFacts` and `facts` respectively.
 
 #### Creat a database
-`use catFacts`
+`use cats-facts`
 
 #### Create a collection
 `db.createCollection('facts')`
