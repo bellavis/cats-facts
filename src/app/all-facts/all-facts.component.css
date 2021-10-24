@@ -1,0 +1,62 @@
+
+
+.btn-save{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+  img{
+    filter: blur(5px) brightness(50%);
+  }
+
+p{
+    font-size: 120%;
+    
+}
+
+.bi{
+  cursor: pointer;
+}
+
+
+@media (max-width:700px){
+  .save-fact{
+    position: absolute;
+    top:20px;
+    cursor: pointer;
+  }
+
+  .carousel-caption{
+    bottom: 30% ;
+  }
+  
+  .w-100 {
+      width: 100% !important;
+      height: 70vh !important;
+      object-fit: cover;
+    
+    }
+
+}
+@media (min-width:1000px){
+  .save-fact{
+    position: absolute;
+    top:50px;
+    cursor: pointer;
+    
+  }
+
+  .carousel-caption{
+    bottom: 35% ;
+  }
+  
+  .w-100 {
+      width: 100% !important;
+      height: 50vh !important;
+      object-fit: cover;
+    
+    }
+}
+

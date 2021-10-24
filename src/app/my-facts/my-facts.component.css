@@ -1,0 +1,56 @@
+.container{
+    padding: 20px;
+    text-align: center;
+  }
+  
+.card{
+    padding: 10px;
+    margin: 30px 0px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+.card-img-top{
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.card-text{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+.read-more-btn{
+    background-color: transparent;
+    color: rgb(43, 91, 221);
+    cursor: pointer;
+    outline: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.expand{
+    -webkit-line-clamp: 5; /* number of lines to show */
+}
+
+.bi {
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 5px 10px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.bi:hover{
+    color: rgb(142, 142, 142);
+}
+
+.bi:active{
+    box-shadow: rgba(50, 50, 93, 0.1) 0px 5px 10px -4px inset, rgba(0, 0, 0, 0.2) 0px 4px 9px -3px inset;
+}

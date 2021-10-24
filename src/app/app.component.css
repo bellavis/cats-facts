@@ -1,0 +1,57 @@
+
+.app-header {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background: url('https://images.unsplash.com/photo-1533568367292-63cab2810e01?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2532&q=80') no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+    text-align: center;
+    color: black;
+    box-shadow: rgba(50, 50, 93, 0.1) 0px 30px 60px -12px, rgba(0, 0, 0, 0.2) 0px 18px 36px -18px;
+    z-index: 1;
+}
+
+a{
+    margin: 10px;
+}
+
+.btn{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    background-color: white;
+}
+
+.btn:focus , .btn:active {
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    background-color: white;
+  }
+
+  .btn:active {
+    background-color: white;
+  }
+
+.btn-active {
+    border: rgb(167, 214, 255) solid 1px ;
+    color:rgb(100, 169, 230) ;
+}
+
+.quote{
+    margin-bottom: 0px;
+}
+
+.disclaimer{
+
+    font-size: 75%;
+}
+
+
+.app-content{
+    z-index: 0;
+}
+
+
+

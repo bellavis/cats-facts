@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" *ngFor="let item of facts | async ; let i= index">
+          <div class="card">
+           
+            <img src="../../assets/images/{{item.img}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                
+              <h5 class="card-title">Fact #{{i+1}}</h5>
+              <p class="card-text" id="read-more{{i}}">{{item.fact}}</p>
+              <button class="read-more-btn" id="read-more-btn{{i}}" (click)="readMore(i)">Read more</button>
+              <i class="bi bi-trash" (click)="removeFromMyFacts(i)"></i>
+              
+            </div>
+          </div>
+        </div>  
+      </div>
+</div>
