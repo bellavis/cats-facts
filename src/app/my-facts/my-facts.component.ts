@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerApiService } from '../server-api.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-my-facts',
@@ -27,7 +28,8 @@ export class MyFactsComponent implements OnInit {
 
   deleteFact(id: string) {
     console.log(id);
-    this.sas.deleteFact(id);
+    this.sas.deleteFact(id).subscribe(x => console.log(`Removed fact with id: ${id}`));
+    window.location.reload();
   }
 
 }

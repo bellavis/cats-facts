@@ -10,12 +10,14 @@ import { RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     AllFactsComponent,
     MyFactsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -28,6 +30,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
       { path: '**', component: PageNotFoundComponent }
     ]),
   ],
+  exports: [RouterModule],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -26,17 +26,20 @@ app.get('/all-facts', async (req, res) => {
             });
             res.send(factsArray)
         })
-        .catch(e => console.log(e));
+        .catch((e) => {
+            console.log(`Error: ${e}`);
+        });
 });
 
 
 app.post('/save-fact', async (req, res) => {
     try {
-        const fact = new Fact(req.body.fact);
+        const fact = new Fact(req.body);
+        console.log(req.body)
         await fact.save();
         res.send(fact);
-        res.sendStatus(200);
     } catch (e) {
+        console.log(`Error: ${e}`);
         res.sendStatus(500);
     }
 });
@@ -46,7 +49,7 @@ app.get('/my-facts', async (req, res) => {
         const myFacts = await Fact.find({});
         res.send(myFacts);
     } catch (e) {
-        console.log(`Error: ${e}`)
+        console.log(`Error: ${e}`);
     }
 
 });
@@ -55,8 +58,9 @@ app.get('/delete-fact/:id', async (req, res) => {
     try {
         const { id } = req.params;
         await Fact.findByIdAndDelete(id);
-        res.sendStatus(200);
+        res.send(id);
     } catch (e) {
+        console.log(`Error: ${e}`);
         res.sendStatus(500);
     }
 })

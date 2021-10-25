@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { Fact } from './interfaces/fact';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ServerApiService {
   apiURL: string = 'http://localhost:4201';
-
   facts: any = this.getFacts();
   myFacts: any = this.getMyFacts();
+  route: any = window.location;
 
   constructor(private http: HttpClient) { }
 
@@ -22,41 +24,51 @@ export class ServerApiService {
     return this.getData('my-facts');
   }
 
-  saveFact(fact: object) {
-    this.postData('save-fact', fact);
+  saveFact(fact: Fact) {
+    return this.postData('save-fact', fact);
   }
 
   deleteFact(id: string) {
-    this.http.get(this.apiURL + '/delete-fact/' + id);
-  }
-
-  getData(route: string) {
-    console.log('sending a get request to: ' + this.apiURL + '/' + route);
-    return this.http.get(this.apiURL + '/' + route).pipe(
+    console.log('sending a DELETE request to: ' + this.apiURL + '/delete-fact/' + id);
+    return this.http.get<Fact>(`${this.apiURL}/delete-fact/${id}`).pipe(
       retry(3),
       catchError(this.handleError)
     );
   }
 
-  postData(route: string, obj: object) {
-    return this.http.post(this.apiURL + route, obj).pipe(
+  getData(route: string) {
+    console.log('sending a GET request to: ' + this.apiURL + '/' + route);
+    return this.http.get<Fact[]>(`${this.apiURL}/${route}`, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }).pipe(
+      retry(3),
       catchError(this.handleError)
     );
   }
 
-  //from angular rxjs documentation
+  postData(route: string, factObj: Fact) {
+    console.log('sending a POST request to: ' + this.apiURL + '/' + route);
+    return this.http.post<Fact>(`${this.apiURL}/${route}`, factObj, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  //Error handler - rxjs documentation
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
-      // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error);
     } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
       console.error(
         `Backend returned code ${error.status}, body was: `, error.error);
     }
-    // Return an observable with a user-facing error message.
     return throwError(
       'Something bad happened; please try again later.');
   }
+
+  reloadCurrentRoute() {
+
+    this.route.navigate('/', { skipLocationChange: true }).then(() => {
+      this.route.reload();
+
+    });
+  }
+
 }
