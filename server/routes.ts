@@ -3,7 +3,7 @@ const app = express.Router();
 const mongoose = require('mongoose');
 const axios = require('axios');
 const Fact = require('./models/my-facts');
-const URL = 'https://catfact.ninja/facts?limit=10';
+const URL = 'https://catfact.ninja/facts?limit=300';
 
 export { app as routes };
 
