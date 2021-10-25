@@ -12,7 +12,7 @@ Navigate to the project folder and run `npm install`. Make sure you have `mongo`
 #### Create a collection
 `db.createCollection('facts')`
 
-Run `npm install` in the `server` folder and do `npm serve` before navigating back to the project folder and run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm install` in the `server` folder and do `npm run serve` before navigating back to the project folder and run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 
